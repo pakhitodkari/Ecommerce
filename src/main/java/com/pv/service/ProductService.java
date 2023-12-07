@@ -30,13 +30,14 @@ public class ProductService
 	//For getting all products
    public List<Product> getAllProducts()
    {
+	   System.out.println(productRepo.findAll());
 	   return productRepo.findAll();
    }
    
  //For getting product by id
    public Product getByProductId(Integer productId)
    {
-	   return productRepo.findById(productId).orElse(null);
+	   return productRepo.findById(productId).get();
    }
    
  //For getting product by name
@@ -69,6 +70,7 @@ public class ProductService
    //For adding multiple products
    public String addProducts(List<Product> products)
    {
+	   
 	   for(Product prod : products)
 	   {
 		   prod.setPostedDateTime(LocalDateTime.now());

@@ -3,6 +3,8 @@ package com.pv.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.annotation.Reference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +53,7 @@ public class Product
    //@NotNull(message = "Enter the Date and Time")
    private LocalDateTime postedDateTime;
    
+   @Reference
    @ManyToOne(cascade = CascadeType.ALL)
    //@NotNull(message = "Enter the Product Category")
    @JoinColumn(name = "category_id")

@@ -2,6 +2,8 @@ package com.pv.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +33,8 @@ public class Category
    @Pattern(regexp = "^[a-zA-Z\\s]+$")
    private String categoryDescription;
    
-   
+   @JsonBackReference
+   @JsonIgnore 
    @OneToMany(mappedBy = "category")
    private List<Product> products;
    
@@ -47,6 +50,16 @@ public Category(Integer categoryID,
 	this.categoryName = categoryName;
 	this.categoryDescription = categoryDescription;
 	this.products = products;
+}
+
+public Category(Integer categoryID,
+		@NotNull(message = "Enter the Category Name") @Pattern(regexp = "[a-zA-Z]") String categoryName,
+		@NotNull(message = "Enter the Category Description") @Pattern(regexp = "[a-zA-Z]") String categoryDescription) {
+	super();
+	this.categoryID = categoryID;
+	this.categoryName = categoryName;
+	this.categoryDescription = categoryDescription;
+
 }
 
 public Integer getCategoryID() {
