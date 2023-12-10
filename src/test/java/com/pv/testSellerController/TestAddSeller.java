@@ -23,7 +23,7 @@ import com.pv.service.SellerService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestAddSeller 
+class TestAddSeller 
 {
 
 	@InjectMocks
@@ -35,7 +35,7 @@ public class TestAddSeller
 	
 	@Test
 	@DisplayName(value = "Check Adding valid seller")
-	public void testAddingValidSeller()
+	 void testAddingValidSeller()
 	{
 		List<Product> product = new ArrayList<Product>();
 		
@@ -53,7 +53,7 @@ public class TestAddSeller
 	
 	@Test
 	@DisplayName(value = "Check Adding List of sellers")
-	public void testAddingListSeller()
+	 void testAddingListSeller()
 	{
 		
 		when(sellerService.addSellers(new ArrayList<Seller>())).thenReturn(new ResponseEntity<Object>("Sellers List is Added Successfully", HttpStatus.ACCEPTED));

@@ -2,7 +2,6 @@
 package com.pv.testProductController;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -29,7 +28,7 @@ import com.pv.service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class TestGetProduct 
+class TestGetProduct 
 {
 	
 	@MockBean
@@ -43,7 +42,7 @@ public class TestGetProduct
 	
 	@Test
 	@DisplayName(value = "Check all the products")
-	public void testFindAll()
+	 void testFindAll()
 	{
 		 Category category = new Category();
 		
@@ -51,7 +50,7 @@ public class TestGetProduct
 		
 		when(prodRepo.findAll()).thenReturn(Stream.of(new Product(1,"abc",123.59,50,"hdkeh",LocalDateTime.now(),category,sellers),new Product(2,"pqr",534.60,20,"ssddd",LocalDateTime.now(),category,sellers)).collect(Collectors.toList()));
 		
-		assertThat(prodService.getAllProducts().size()).isEqualTo(prodRepo.findAll().size());
+		assertThat(prodService.getAllProducts()).hasSameSizeAs(prodRepo.findAll());
 		
 		//assertEquals(prodService.getAllProducts(),Stream.of(new Product(1,"abc",123.59,50,"hdkeh",LocalDateTime.now(),category,sellers),new Product(2,"pqr",534.60,20,"ssddd",LocalDateTime.now(),category,sellers)).collect(Collectors.toList()));
 		
@@ -59,7 +58,7 @@ public class TestGetProduct
 	
 	@Test
 	@DisplayName(value = "Check product for given id")
-	public void testFindById() {
+	 void testFindById() {
 		 Category category = new Category();
 		
 		 List<Seller> sellers = new ArrayList<>();
@@ -71,10 +70,10 @@ public class TestGetProduct
 		assertThat(prod).isNotNull();
 	}
 	
-	@Disabled
+	@Disabled(value = "Not Required")
 	@Test
 	@DisplayName(value = "Check product for given id which is not present")
-	public void testFindByIdInvalid() {
+	 void testFindByIdInvalid() {
 		
 		when(prodRepo.findById(-1).get()).thenReturn(null);
 		
@@ -85,7 +84,7 @@ public class TestGetProduct
 	
 	@Test
 	@DisplayName(value = "Check product for given invalid product name")
-	public void testProductByNameInvalid()
+	 void testProductByNameInvalid()
 	{
 		when(prodRepo.findByProductName(null)).thenReturn(null);
 		
@@ -96,7 +95,7 @@ public class TestGetProduct
 	
 	@Test
 	@DisplayName(value = "Check product for given valid product name")
-	public void testProductByName()
+	 void testProductByName()
 	{
 		Category category = new Category();
 		

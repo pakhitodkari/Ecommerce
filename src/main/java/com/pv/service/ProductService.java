@@ -3,6 +3,8 @@ package com.pv.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.pv.entity.Category;
 import com.pv.entity.Product;
 import com.pv.entity.Seller;
+import com.pv.exception.AmountInvalidException;
 import com.pv.exception.CategoryNotPresentException;
 import com.pv.exception.ProductNotPresentException;
 import com.pv.repository.CategoryRepository;
@@ -26,18 +29,19 @@ public class ProductService
 	private CategoryRepository categoryRepo;
 	
 	
+	Logger logger = LoggerFactory.getLogger(ProductService.class);
 	
 	//For getting all products
    public List<Product> getAllProducts()
    {
-	   System.out.println(productRepo.findAll());
+	   logger.error("getAllProduct() method is called");
 	   return productRepo.findAll();
    }
    
  //For getting product by id
    public Product getByProductId(Integer productId)
    {
-	   return productRepo.findById(productId).get();
+	   return productRepo.findById(productId).orElseThrow(() -> new ProductNotPresentException("Product is not Present in database"));
    }
    
  //For getting product by name
@@ -89,12 +93,11 @@ public class ProductService
     	   throw new ProductNotPresentException("Product is not Present in database");
        }
         
-       Product prod = productRepo.findById(productId).get();
+       Product prod = productRepo.findById(productId).orElseThrow(() -> new ProductNotPresentException("Product is not Present in database"));
        
        prod.setProductID(product.getProductID());
        prod.setProductName(product.getProductName());
        prod.setProductCost(product.getProductCost());
-       //prod.setProductWeight(product.getProductWeight());
        prod.setProductQuantity(product.getProductQuantity());
        prod.setProductDescription(product.getProductDescription());
        prod.setPostedDateTime(product.getPostedDateTime());
@@ -102,7 +105,7 @@ public class ProductService
        prod.setSellers(product.getSellers());
        
        productRepo.saveAndFlush(prod);
-	   return new ResponseEntity<Object>("Product Updated Successfully", HttpStatus.OK);
+	   return new ResponseEntity<>("Product Updated Successfully", HttpStatus.OK);
    }
    
    //For deleting product
@@ -115,7 +118,7 @@ public class ProductService
 	   
 	   productRepo.deleteById(productId);
 	   
-	   return new ResponseEntity<Object>("Product Deleted Successfully", HttpStatus.ACCEPTED);
+	   return new ResponseEntity<>("Product Deleted Successfully", HttpStatus.ACCEPTED);
    }
    
    //For Adding Seller for particular Product
@@ -127,13 +130,13 @@ public class ProductService
        }
 	   
 	   
-	   Product prod = productRepo.findById(productId).get();
+	   Product prod = productRepo.findById(productId).orElseThrow(() -> new ProductNotPresentException("Product is not Present in database"));
 	   
 	   prod.setSellers(sellers);
 	   
 	   productRepo.saveAndFlush(prod);
 	   
-	   return new ResponseEntity<Object>("Seller for the Product Id "+productId+" is added Successfully", HttpStatus.OK);
+	   return new ResponseEntity<>("Seller for the Product Id "+productId+" is added Successfully", HttpStatus.OK);
    }
    
  //For Adding Category for particular Product(Already saved product) if category is null
@@ -145,13 +148,13 @@ public class ProductService
        }
 	   
 	   
-	   Product prod = productRepo.findById(productId).get();
+	   Product prod = productRepo.findById(productId).orElseThrow(() -> new ProductNotPresentException("Product is not Present in database"));
 	   
 	   prod.setCategory(category);
 	   
 	   productRepo.saveAndFlush(prod);
 	   
-	   return new ResponseEntity<Object>("Category "+category.getCategoryName()+" for the Product Id "+productId+" is added Successfully", HttpStatus.OK);
+	   return new ResponseEntity<>("Category "+category.getCategoryName()+" for the Product Id "+productId+" is added Successfully", HttpStatus.OK);
    }
    
  //For Adding Product(Not saved product) by searching category by name, as duplicate name category is not allowed
@@ -170,6 +173,17 @@ public class ProductService
 	   
 	   productRepo.saveAndFlush(product);
 	   
-	   return new ResponseEntity<Object>("Product is added Successfully", HttpStatus.OK);
+	   return new ResponseEntity<>("Product is added Successfully", HttpStatus.OK);
+   }
+   
+   //For getting products between price range
+   public List<Product> getProductByPriceRange(Double price1, Double price2)
+   {
+	   if(price1 > price2 || price1 == 0 || price2 == 0)
+	   {
+		   throw new AmountInvalidException("Added Amount Range is not Valid");
+	   }
+	   
+	   return productRepo.findProductByPriceRange(price1, price2);
    }
 }

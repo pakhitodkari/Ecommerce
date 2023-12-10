@@ -32,7 +32,7 @@ public class SellerService
     		throw new SellerNotPresentException("Seller of seller id "+sellerId+" not present in database");
     	}
     	
-	  return sellerRepo.findById(sellerId).get();
+	  return sellerRepo.findById(sellerId).orElseThrow(() -> new SellerNotPresentException("Seller of seller id "+sellerId+" not present in database"));
 	}
     
     //For getting Seller by Email
@@ -69,10 +69,10 @@ public class SellerService
     	if(seller1 == null)
     	{
     		sellerRepo.saveAndFlush(seller);
-    		return new ResponseEntity<Object>("Seller is Added Successfully", HttpStatus.ACCEPTED);
+    		return new ResponseEntity<>("Seller is Added Successfully", HttpStatus.ACCEPTED);
     	}
     	
-    	return new ResponseEntity<Object>("Seller is Already Present in Database", HttpStatus.CONFLICT);
+    	return new ResponseEntity<>("Seller is Already Present in Database", HttpStatus.CONFLICT);
     }
     
   //For Adding Seller List
@@ -81,7 +81,7 @@ public class SellerService
     	
     	sellerRepo.saveAllAndFlush(sellers);
     		
-    	return new ResponseEntity<Object>("Sellers List is Added Successfully", HttpStatus.ACCEPTED);
+    	return new ResponseEntity<>("Sellers List is Added Successfully", HttpStatus.ACCEPTED);
     	
     }
     
@@ -93,7 +93,7 @@ public class SellerService
     		throw new SellerNotPresentException("Seller of id "+sellerId+" not present in database");
     	}
     	
-    	Seller seller1 = sellerRepo.findById(sellerId).get();
+    	Seller seller1 = sellerRepo.findById(sellerId).orElseThrow(() -> new SellerNotPresentException("Seller of seller id "+sellerId+" not present in database"));
     	
     	seller1.setSellerID(seller.getSellerID());
     	seller1.setSellerName(seller.getSellerName());
@@ -104,7 +104,7 @@ public class SellerService
     	
     	sellerRepo.saveAndFlush(seller1);
     	
-    	return new ResponseEntity<Object>("Seller is Updated Successfully", HttpStatus.ACCEPTED);
+    	return new ResponseEntity<>("Seller is Updated Successfully", HttpStatus.ACCEPTED);
     }
     
   //For Updating Seller by Email
@@ -127,7 +127,7 @@ public class SellerService
     	
     	sellerRepo.saveAndFlush(seller1);
     	
-    	return new ResponseEntity<Object>("Seller is Updated Successfully", HttpStatus.ACCEPTED);
+    	return new ResponseEntity<>("Seller is Updated Successfully", HttpStatus.ACCEPTED);
     }
     
   //For Deleting Seller 
@@ -141,7 +141,7 @@ public class SellerService
     	
     	sellerRepo.deleteById(sellerId);
     		
-    	return new ResponseEntity<Object>("Seller is Deleted Successfully", HttpStatus.OK);
+    	return new ResponseEntity<>("Seller is Deleted Successfully", HttpStatus.OK);
     	
     }
     

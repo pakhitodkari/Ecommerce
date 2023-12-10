@@ -24,7 +24,7 @@ import com.pv.service.ProductService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestAddProduct 
+class TestAddProduct 
 {
 	
 	@InjectMocks
@@ -44,7 +44,7 @@ public class TestAddProduct
 	
 	@Test
 	@DisplayName(value = "Check Adding valid products")
-	public void testAddingValidProduct()
+	 void testAddingValidProduct()
 	{
 		
 		when(prodService.addProduct(this.product = new Product(1,"abc",123.59,50,"hdkeh",LocalDateTime.now(),category,sellers))).thenReturn("Product Added Successfully");
@@ -54,7 +54,7 @@ public class TestAddProduct
 	
 	@Test
 	@DisplayName(value = "Check Adding Invalid products")
-	public void testAddingInValidProduct()
+	 void testAddingInValidProduct()
 	{
 		
 		when(prodService.addProduct(null)).thenReturn("Product is Invalid");
@@ -64,7 +64,7 @@ public class TestAddProduct
 	
 	@Test
 	@DisplayName(value = "Check Adding List of products")
-	public void testAddingListProduct()
+	 void testAddingListProduct()
 	{
 		
 		when(prodService.addProducts(new ArrayList<Product>())).thenReturn("All Products Added Successfully");

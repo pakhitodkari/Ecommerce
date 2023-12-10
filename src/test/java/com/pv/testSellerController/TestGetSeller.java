@@ -20,7 +20,7 @@ import com.pv.service.SellerService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class TestGetSeller 
+class TestGetSeller 
 {
 
 	
@@ -33,7 +33,7 @@ public class TestGetSeller
 	
 	@Test
 	@DisplayName(value = "Check all the sellers")
-	public void testGetAllSeller()
+	 void testGetAllSeller()
 	{
 		 //Category category = new Category();
 		
@@ -48,7 +48,7 @@ public class TestGetSeller
 	
 	@Test
 	@DisplayName(value = "Get seller for given id")
-	public void testGetSellerById() {
+	 void testGetSellerById() {
 		
 		
 		when(sellerService.getSeller(1)).thenReturn(new Seller());
@@ -62,7 +62,7 @@ public class TestGetSeller
 	
 	@Test
 	@DisplayName(value = "Get seller by email")
-	public void testGetSellerByEmail() {
+	 void testGetSellerByEmail() {
 		
 		
 		when(sellerService.getBySellerEmail("abc@gmail.com")).thenReturn(new Seller());
@@ -74,7 +74,7 @@ public class TestGetSeller
 	
 	@Test
 	@DisplayName(value = "Get Seller by name")
-	public void testGetSellerByName() {
+	 void testGetSellerByName() {
 		
 		
 		when(sellerService.getBySellerName("Sahil")).thenReturn(new ArrayList<Seller>());

@@ -23,7 +23,7 @@ import com.pv.service.SellerService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestUpdateSeller
+class TestUpdateSeller
 {
     
 	@InjectMocks
@@ -35,7 +35,7 @@ public class TestUpdateSeller
 	
 	@Test
 	@DisplayName(value = "Update valid Seller")
-	public void testUpdateValidSeller()
+	 void testUpdateValidSeller()
 	{
 		List<Product> product = new ArrayList<Product>();
 		
@@ -53,7 +53,7 @@ public class TestUpdateSeller
 	
 	@Test
 	@DisplayName(value = "Update Invalid seller")
-	public void testUpdateInvalidSeller()
+	 void testUpdateInvalidSeller()
 	{
 		List<Product> product = new ArrayList<Product>();
 		

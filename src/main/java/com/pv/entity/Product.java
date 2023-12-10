@@ -36,10 +36,6 @@ public class Product
    @NotNull(message = "Enter the Product Cost")
    private Double productCost;
    
-//   @Column(name = "Product_Weight")
-//   @NotNull(message = "Enter the Product Weight")
-//   @Pattern(regexp = "([\\d.]+)\\s+(lbs?|gm|kg)")
-//   private String productWeight;
    
    @Column(name = "Product_Quantity")
    @NotNull(message = "Enter the Product Quantity")
@@ -72,7 +68,6 @@ public class Product
 public Product(Integer productID,
 		@NotNull(message = "Enter the Product Name") @Pattern(regexp = "[a-zA-Z]") String productName,
 		@NotNull(message = "Enter the Product Cost") Double productCost,
-		//@NotNull(message = "Enter the Product Weight") String productWeight,
 		@NotNull(message = "Enter the Product Quantity") Integer productQuantity,
 		@NotNull(message = "Enter the Product Description") String productDescription,
 		@NotNull(message = "Enter the Date and Time") LocalDateTime postedDateTime, Category category, List<Seller> sellers) {
@@ -80,7 +75,6 @@ public Product(Integer productID,
 	this.productID = productID;
 	this.productName = productName;
 	this.productCost = productCost;
-	//this.productWeight = productWeight;
 	this.productQuantity = productQuantity;
 	this.productDescription = productDescription;
 	this.postedDateTime = postedDateTime;
@@ -111,15 +105,6 @@ public Double getProductCost() {
 public void setProductCost(Double productCost) {
 	this.productCost = productCost;
 }
-
-
-//public String getProductWeight() {
-//	return productWeight;
-//}
-//
-//public void setProductWeight(String productWeight) {
-//	this.productWeight = productWeight;
-//}
 
 public Integer getProductQuantity() {
 	return productQuantity;

@@ -18,7 +18,7 @@ import com.pv.service.CategoryService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestDeleteCategory 
+class TestDeleteCategory 
 {
 	
 	@InjectMocks
@@ -30,7 +30,7 @@ public class TestDeleteCategory
 	
 	@Test
 	@DisplayName(value = "Delete valid category")
-	public void testDeleteValidCategory()
+	 void testDeleteValidCategory()
 	{
 		
 		when(categoryService.deleteCategory(1)).thenReturn(new ResponseEntity<Object>("Category Deleted Successfully", HttpStatus.ACCEPTED));
@@ -44,7 +44,7 @@ public class TestDeleteCategory
 	
 	@Test
 	@DisplayName(value = "Delete Invalid category")
-	public void testDeleteInvalidCategory()
+	 void testDeleteInvalidCategory()
 	{
 		
 		when(categoryService.deleteCategory(-1)).thenReturn(new ResponseEntity<Object>("Invalid Category Not Exits", HttpStatus.NOT_ACCEPTABLE));

@@ -21,7 +21,7 @@ import com.pv.service.CategoryService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class TestGetCategory 
+class TestGetCategory 
 {
 	
 	@InjectMocks
@@ -33,7 +33,7 @@ public class TestGetCategory
 	
 	@Test
 	@DisplayName(value = "Check all the categories")
-	public void testGetAllCategory()
+	 void testGetAllCategory()
 	{
 		 //Category category = new Category();
 		
@@ -48,7 +48,7 @@ public class TestGetCategory
 	
 	@Test
 	@DisplayName(value = "Get category for given id")
-	public void testGetCategoryById() {
+	 void testGetCategoryById() {
 		
 		
 		when(categoryService.getByCategoryId(1)).thenReturn(new Category());
@@ -60,7 +60,7 @@ public class TestGetCategory
 	
 	@Test
 	@DisplayName(value = "Get category for given invalid id")
-	public void testGetCategoryByInvalidId() {
+	 void testGetCategoryByInvalidId() {
 		
 		
 		when(categoryService.getByCategoryId(1)).thenReturn(null);
@@ -73,7 +73,7 @@ public class TestGetCategory
 	
 	@Test
 	@DisplayName(value = "Get category for given category name")
-	public void testGetCategoryByName() {
+	 void testGetCategoryByName() {
 		
 		
 		when(categoryService.findByCategoryName("Grocery")).thenReturn(new Category());
@@ -85,7 +85,7 @@ public class TestGetCategory
 	
 	@Test
 	@DisplayName(value = "Get product list for given category name")
-	public void testGetProductByCategoryName() {
+	 void testGetProductByCategoryName() {
 		
 		
 		when(categoryService.findProductsByCategoryName("Grocery")).thenReturn(new ArrayList<Product>());

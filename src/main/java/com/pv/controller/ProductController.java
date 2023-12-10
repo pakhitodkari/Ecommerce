@@ -93,4 +93,11 @@ public class ProductController
    {
 	   return productService.addProductCategoryName(categoryName, product);
    }
+   
+   //For finding the product between the price range
+   @GetMapping("/getProduct/{price1}/{price2}")
+   public List<Product> getProductByPriceRange(@PathVariable("price1") Double price1, @PathVariable("price2") Double price2)
+   {
+	   return productService.getProductByPriceRange(price1, price2);
+   }
 }

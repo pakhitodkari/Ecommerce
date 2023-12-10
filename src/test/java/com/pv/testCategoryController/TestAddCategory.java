@@ -22,7 +22,7 @@ import com.pv.service.CategoryService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestAddCategory 
+class TestAddCategory 
 {
 	
 	@InjectMocks
@@ -34,7 +34,7 @@ public class TestAddCategory
 	
 	@Test
 	@DisplayName(value = "Check Adding valid category")
-	public void testAddingValidCategory()
+	 void testAddingValidCategory()
 	{
 		List<Product> product = new ArrayList<Product>();
 		
@@ -47,7 +47,7 @@ public class TestAddCategory
 	
 	@Test
 	@DisplayName(value = "Check Adding Invalid category")
-	public void testAddingInvalidCategory()
+	 void testAddingInvalidCategory()
 	{
 		
 		when(categoryService.addCategory(null)).thenReturn("Category is Invalid");
@@ -57,7 +57,7 @@ public class TestAddCategory
 	
 	@Test
 	@DisplayName(value = "Check Adding List of categories")
-	public void testAddingListCategory()
+	 void testAddingListCategory()
 	{
 		
 		when(categoryService.addCategories(new ArrayList<Category>())).thenReturn("All Categories Added Successfully");

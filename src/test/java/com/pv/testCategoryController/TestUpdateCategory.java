@@ -22,7 +22,7 @@ import com.pv.service.CategoryService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestUpdateCategory 
+class TestUpdateCategory 
 {
 
 	@InjectMocks
@@ -34,7 +34,7 @@ public class TestUpdateCategory
 	
 	@Test
 	@DisplayName(value = "Update valid Category")
-	public void testUpdateValidCategory()
+	 void testUpdateValidCategory()
 	{
 		Category category = new Category(1,"abc","jkl",new ArrayList<Product>());
 		
@@ -49,7 +49,7 @@ public class TestUpdateCategory
 	
 	@Test
 	@DisplayName(value = "Update Invalid products")
-	public void testUpdateInvalidProduct()
+	 void testUpdateInvalidProduct()
 	{
 		
 		Category category = new Category(1,"abc","jkl",new ArrayList<Product>());

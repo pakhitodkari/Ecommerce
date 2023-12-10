@@ -62,9 +62,7 @@ public class CategoryService
     	   throw new CategoryNotPresentException("Category is not Present in database");
        }
 	   
-	   List<Product> prods = category1.getProducts();
-	   
-	   return prods;
+	   return category1.getProducts();
    }
  
  //For adding single category
@@ -89,7 +87,7 @@ public class CategoryService
     	   throw new CategoryNotPresentException("Category of Category ID "+categoryId+" is not Present in database");
        }
         
-       Category category1 = categoryRepo.findById(categoryId).get();
+       Category category1 = categoryRepo.findById(categoryId).orElseThrow(() -> new CategoryNotPresentException("Category of Category ID "+categoryId+" is not Present in database"));
        
        category1.setCategoryID(category.getCategoryID());
        category1.setCategoryName(category.getCategoryName());
@@ -97,7 +95,7 @@ public class CategoryService
        category1.setProducts(category.getProducts());
        
        categoryRepo.saveAndFlush(category1);
-	   return new ResponseEntity<Object>("Category Updated Successfully", HttpStatus.OK);
+	   return new ResponseEntity<>("Category Updated Successfully", HttpStatus.OK);
    }
    
    //For deleting category
@@ -110,7 +108,7 @@ public class CategoryService
 	   
 	   categoryRepo.deleteById(categoryId);
 	   
-	   return new ResponseEntity<Object>("Category Deleted Successfully", HttpStatus.ACCEPTED);
+	   return new ResponseEntity<>("Category Deleted Successfully", HttpStatus.ACCEPTED);
    }
    
  //For deleting category by Name
@@ -125,7 +123,7 @@ public class CategoryService
 	   
 	   categoryRepo.delete(category1);
 	   
-	   return new ResponseEntity<Object>("Category "+categoryName+" is Deleted Successfully", HttpStatus.ACCEPTED);
+	   return new ResponseEntity<>("Category "+categoryName+" is Deleted Successfully", HttpStatus.ACCEPTED);
    }
    
 }

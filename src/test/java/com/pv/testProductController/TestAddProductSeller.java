@@ -22,7 +22,7 @@ import com.pv.service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class TestAddProductSeller 
+class TestAddProductSeller 
 {
 
 	@InjectMocks
@@ -34,7 +34,7 @@ public class TestAddProductSeller
 	
 	@Test
 	@DisplayName(value = "Add valid seller for products")
-	public void testAddProductValidSeller()
+	 void testAddProductValidSeller()
 	{
 		when(prodService.addProductSeller(1, new ArrayList<Seller>())).thenReturn(new ResponseEntity<Object>("Seller for the Product Id is added Successfully", HttpStatus.OK));
 		
@@ -46,7 +46,7 @@ public class TestAddProductSeller
 	
 	@Test
 	@DisplayName(value = "Add Invalid Seller for products")
-	public void testAddProductInvalidSeller()
+	 void testAddProductInvalidSeller()
 	{
 		when(prodService.addProductSeller(-1,null)).thenReturn(new ResponseEntity<Object>("Invalid Data", HttpStatus.NOT_ACCEPTABLE));
 		

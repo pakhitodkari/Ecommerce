@@ -19,7 +19,7 @@ import com.pv.service.ProductService;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class TestDeleteProduct
+class TestDeleteProduct
 {
  
 	@MockBean
@@ -31,7 +31,7 @@ public class TestDeleteProduct
 	
 	@Test
 	@DisplayName(value = "Delete valid products")
-	public void testDeleteValidProduct()
+	 void testDeleteValidProduct()
 	{
 		
 		when(prodService.deleteProduct(1)).thenReturn(new ResponseEntity<Object>("Product Deleted Successfully", HttpStatus.ACCEPTED));
@@ -45,7 +45,7 @@ public class TestDeleteProduct
 	
 	@Test
 	@DisplayName(value = "Delete Invalid products")
-	public void testUpdateInvalidProduct()
+	 void testUpdateInvalidProduct()
 	{
 		
 		when(prodService.deleteProduct(-1)).thenReturn(new ResponseEntity<Object>("Invalid Product Not Exits", HttpStatus.NOT_ACCEPTABLE));

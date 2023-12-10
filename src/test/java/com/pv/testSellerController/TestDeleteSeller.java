@@ -19,7 +19,7 @@ import com.pv.service.SellerService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class TestDeleteSeller 
+class TestDeleteSeller 
 {
  
 	@InjectMocks
@@ -31,7 +31,7 @@ public class TestDeleteSeller
 	
 	@Test
 	@DisplayName(value = "Delete valid seller")
-	public void testDeleteValidSeller()
+	 void testDeleteValidSeller()
 	{
 		
 		when(sellerService.deleteSeller(1)).thenReturn(new ResponseEntity<Object>("Seller is Deleted Successfully", HttpStatus.OK));
@@ -45,7 +45,7 @@ public class TestDeleteSeller
 	
 	@Test
 	@DisplayName(value = "Delete Invalid seller")
-	public void testDeleteInvalidSeller()
+	 void testDeleteInvalidSeller()
 	{
 		
 		when(sellerService.deleteSeller(-1)).thenReturn(new ResponseEntity<Object>("Invalid Seller Not Exits", HttpStatus.NOT_ACCEPTABLE));
